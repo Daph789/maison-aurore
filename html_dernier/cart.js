@@ -1,6 +1,6 @@
 const CART_KEY = "maisonAuroreCart";
 const LAST_ADDED_KEY = "maisonAuroreLastAdded";
-const CHECKOUT_API_URL = "https://YOUR-RENDER-URL.onrender.com/create-checkout-session";
+const CHECKOUT_API_URL = "https://maison-aurore.onrender.com/create-checkout-session";
 const PRODUCT_URLS = {
   "watch-007": "product-001.html",
   "watch-001": "shop.html",
