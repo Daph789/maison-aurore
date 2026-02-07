@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bracelet Star Shell | Maison Aurore</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="cart.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">Maison Aurore</div>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+      <nav class="nav" id="site-nav">
+        <a class="nav-link" href="index.html">Accueil</a>
+        <a class="nav-link" href="shop.html">Boutique</a>
+        <a class="nav-link" href="about.html">À propos</a>
+        <a class="nav-link" href="contact.html">Contact</a>
+        <a class="nav-link" href="cart.html">Panier <span class="cart-count" id="cart-count">0</span></a>
+      </nav>
+    </div>
+  </header>
+  <div class="nav-overlay" id="nav-overlay"></div>
+
+  <main>
+    <section class="section">
+      <div class="container product-container product-page">
+        <div class="product-image">
+          <div class="gallery">
+            <div class="gallery-main">
+              <img id="main-image" src="bijoux/bijou-04.jpg" alt="Bracelet Star Shell">
+            </div>
+            <div class="thumbs">
+              <button class="thumb is-active" type="button" data-src="bijoux/bijou-04.jpg" aria-label="Angle frontal">
+                <img src="bijoux/bijou-04.jpg" alt="Bracelet Star Shell">
+              </button>
+            </div>
+          </div>
+          <div class="thumb-info thumb-info-bottom">
+            <div>Livraison 48h</div>
+            <div>Garantie 2 ans</div>
+            <div>Retours 14 jours</div>
+            <div>Paiement sécurisé</div>
+          </div>
+        </div>
+        <div class="product-info">
+          <span class="badge">Bijoux 02</span>
+          <h1>Bracelet Star Shell</h1>
+          <p>Bracelet féminin, style délicat.</p>
+          <div class="price">10€</div>
+          <div class="options">
+            <div>
+              <label for="qty">Quantité</label>
+              <input id="qty" name="qty" type="number" min="1" value="1">
+            </div>
+            <div>
+              <label for="size">Longueur</label>
+              <input id="size" name="size" type="text" value="Standard" readonly>
+            </div>
+            <div>
+              <label for="gift">Emballage cadeau</label>
+              <select id="gift" name="gift">
+                <option value="non">Non</option>
+                <option value="oui">Oui</option>
+              </select>
+            </div>
+            <div id="gift-message-wrap" style="display: none;">
+              <label for="gift-message">Ajouter un message personnalisé ?</label>
+              <select id="gift-message" name="gift-message">
+                <option value="non">Non</option>
+                <option value="oui">Oui</option>
+              </select>
+            </div>
+            <div id="gift-text-wrap" style="display: none;">
+              <label for="gift-text">Votre message</label>
+              <input id="gift-text" name="gift-text" type="text" placeholder="Écrivez votre message">
+            </div>
+          </div>
+          <div class="specs">
+            <div><strong>Contenu</strong>Argent (Silver).</div>
+            <div><strong>Silver 999</strong>Oui.</div>
+            <div><strong>Silver 925</strong>Oui.</div>
+          </div>
+          <div class="hero-actions">
+            <button class="button button-primary" type="button" data-add-to-cart data-sku="jewel-202" data-name="Bracelet Star Shell" data-price="10" data-image="bijoux/bijou-04.jpg" data-url="product-007.html" data-qty-input="qty">Ajouter au panier</button>
+            <a class="button button-secondary" href="shop.html">Retour</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="brand">Maison Aurore</div>
+        <p>Montres et bijoux de luxe abordables.</p>
+      </div>
+      <div>
+        <p>Service client</p>
+        <p>support@maison-aurore.fr</p>
+        <p>+33 1 84 80 00 90</p>
+      </div>
+      <div>
+        <p>Réseaux</p>
+        <p>Instagram · Pinterest · TikTok</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const giftSelect = document.getElementById("gift");
+    const giftMessageWrap = document.getElementById("gift-message-wrap");
+    const giftMessageSelect = document.getElementById("gift-message");
+    const giftTextWrap = document.getElementById("gift-text-wrap");
+
+    function toggleGiftOptions() {
+      const giftYes = giftSelect.value === "oui";
+      giftMessageWrap.style.display = giftYes ? "block" : "none";
+      if (!giftYes) {
+        giftMessageSelect.value = "non";
+        giftTextWrap.style.display = "none";
+      }
+    }
+
+    function toggleGiftText() {
+      const messageYes = giftMessageSelect.value === "oui";
+      giftTextWrap.style.display = messageYes ? "block" : "none";
+    }
+
+    giftSelect.addEventListener("change", toggleGiftOptions);
+    giftMessageSelect.addEventListener("change", toggleGiftText);
+    toggleGiftOptions();
+  </script>
+</body>
+</html>
