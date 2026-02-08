@@ -727,6 +727,14 @@ a {
   margin: 20px 0;
 }
 
+.product-info .specs {
+  margin-bottom: 16px;
+}
+
+.product-info .hero-actions {
+  margin-top: 16px;
+}
+
 .options label {
   font-size: 12px;
   text-transform: uppercase;

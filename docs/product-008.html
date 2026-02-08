@@ -15,14 +15,14 @@
   "@type": "Product",
   "name": "Collier Lettre Initiale",
   "image": "https://karcharelle.com/bijoux/bijou-05.jpg",
-  "description": "Montre quartz, style casual, boitier acier inoxydable.",
+  "description": "Collier lettre a choisir, finition brillante.",
   "brand": {"@type": "Brand", "name": "Maison Karcharelle"},
-  "sku": "watch-102",
+  "sku": "jewel-203",
   "offers": {
     "@type": "Offer",
-    "url": "https://karcharelle.com/product-003.html",
+    "url": "https://karcharelle.com/product-008.html",
     "priceCurrency": "EUR",
-    "price": "62",
+    "price": "10",
     "availability": "https://schema.org/InStock"
   }
 }
@@ -56,7 +56,7 @@
             <div class="gallery-main">
               <img id="main-image" src="bijoux/bijou-05.jpg" alt="Collier Lettre Initiale">
             </div>
-                        <div class="thumbs">
+            <div class="thumbs">
               <button class="thumb is-active" type="button" data-src="bijoux/bijou-05.jpg" aria-label="Angle frontal">
                 <img src="bijoux/bijou-05.jpg" alt="Collier Lettre Initiale vue de face">
               </button>
@@ -64,7 +64,6 @@
                 <img src="bijoux/lettre.jpg" alt="Collier Lettre Initiale autre angle">
               </button>
             </div>
-
           </div>
           <div class="thumb-info thumb-info-bottom">
             <div>Livraison 48h</div>
@@ -88,6 +87,37 @@
               <input id="size" name="size" type="text" value="Standard" readonly>
             </div>
             <div>
+              <label for="initial">Initiale</label>
+              <select id="initial" name="initial">
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+                <option value="E">E</option>
+                <option value="F">F</option>
+                <option value="G">G</option>
+                <option value="H">H</option>
+                <option value="I">I</option>
+                <option value="J">J</option>
+                <option value="K">K</option>
+                <option value="L">L</option>
+                <option value="M">M</option>
+                <option value="N">N</option>
+                <option value="O">O</option>
+                <option value="P">P</option>
+                <option value="Q">Q</option>
+                <option value="R">R</option>
+                <option value="S">S</option>
+                <option value="T">T</option>
+                <option value="U">U</option>
+                <option value="V">V</option>
+                <option value="W">W</option>
+                <option value="X">X</option>
+                <option value="Y">Y</option>
+                <option value="Z">Z</option>
+              </select>
+            </div>
+            <div>
               <label for="gift">Emballage cadeau</label>
               <select id="gift" name="gift">
                 <option value="non">Non</option>
@@ -106,23 +136,14 @@
               <input id="gift-text" name="gift-text" type="text" placeholder="Écrivez votre message">
             </div>
           </div>
-                    <div class="specs">
+          <div class="specs">
             <div><strong>Options</strong>Initiale A a Z.</div>
             <div><strong>Couleurs</strong>Acier, Or.</div>
             <div><strong>Type</strong>Collier.</div>
           </div>
-
-            <div><strong>Diamètre cadran</strong>40 mm.</div>
-            <div><strong>Épaisseur</strong>8 mm.</div>
-            <div><strong>Boîtier</strong>Acier inoxydable.</div>
-            <div><strong>Matériau</strong>Métal.</div>
-            <div><strong>Style</strong>Casual.</div>
-            <div><strong>Public</strong>Hommes.</div>
-            <div><strong>Emballage</strong>180 × 100 × 40 mm.</div>
-          </div>
           <div class="hero-actions">
             <button class="button button-primary" type="button" data-add-to-cart data-sku="jewel-203" data-name="Collier Lettre Initiale" data-price="10" data-image="bijoux/bijou-05.jpg" data-url="product-008.html" data-qty-input="qty">Ajouter au panier</button>
-            <a class="button button-secondary" href="index.html">Retour</a>
+            <a class="button button-secondary" href="shop.html">Retour</a>
           </div>
         </div>
       </div>
@@ -138,12 +159,13 @@
       <div>
         <p>Service client</p>
         <p>karcharelle@gmail.com</p>
-              </div>
-            <div>
+      </div>
+      <div>
         <p>Réseaux (développeurs)</p>
-        <p><a class="social-link" href="https://www.instagram.com/daphnel.takam?igsh=ZHplaHR6NHhzZXo0" target="_blank" rel="noopener">          <span class="ig-icon" aria-hidden="true"></span> Instagram de l'équipe dev</a></p>
+        <p><a class="social-link" href="https://www.instagram.com/daphnel.takam?igsh=ZHplaHR6NHhzZXo0" target="_blank" rel="noopener"><span class="ig-icon" aria-hidden="true"></span> Instagram de l'équipe dev</a></p>
         <p>Responsables : Magni Evige, Hatim Abdouni, Adrien Barroche</p>
-            <div class="legal-links">
+      </div>
+      <div class="legal-links">
         <a href="mentions-legales.html">Mentions légales</a>
         <span>·</span>
         <a href="cgv.html">CGV</a>
@@ -152,37 +174,7 @@
         <span>·</span>
         <a href="retours-livraison.html">Livraison & retours</a>
       </div>
-</div>
     </div>
   </footer>
-
-  <script>
-    const giftSelect = document.getElementById("gift");
-    const giftMessageWrap = document.getElementById("gift-message-wrap");
-    const giftMessageSelect = document.getElementById("gift-message");
-    const giftTextWrap = document.getElementById("gift-text-wrap");
-    const mainImage = document.getElementById("main-image");
-    const thumbs = document.querySelectorAll(".thumb");
-
-    function toggleGiftOptions() {
-      const giftYes = giftSelect.value === "oui";
-      giftMessageWrap.style.display = giftYes ? "block" : "none";
-      if (!giftYes) {
-        giftMessageSelect.value = "non";
-        giftTextWrap.style.display = "none";
-      }
-    }
-
-    function toggleGiftText() {
-      const messageYes = giftMessageSelect.value === "oui";
-      giftTextWrap.style.display = messageYes ? "block" : "none";
-    }
-
-    giftSelect.addEventListener("change", toggleGiftOptions);
-    giftMessageSelect.addEventListener("change", toggleGiftText);
-    toggleGiftOptions();
-
-    });
-  </script>
 </body>
 </html>

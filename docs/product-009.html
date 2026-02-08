@@ -15,14 +15,14 @@
   "@type": "Product",
   "name": "Montre Rectangulaire Or Retro",
   "image": "https://karcharelle.com/montres/rect-01.jpg",
-  "description": "Montre quartz, style casual, boitier acier inoxydable.",
+  "description": "Montre rectangulaire au style retro, bracelet acier.",
   "brand": {"@type": "Brand", "name": "Maison Karcharelle"},
-  "sku": "watch-102",
+  "sku": "watch-301",
   "offers": {
     "@type": "Offer",
-    "url": "https://karcharelle.com/product-003.html",
+    "url": "https://karcharelle.com/product-009.html",
     "priceCurrency": "EUR",
-    "price": "62",
+    "price": "50",
     "availability": "https://schema.org/InStock"
   }
 }
@@ -56,7 +56,7 @@
             <div class="gallery-main">
               <img id="main-image" src="montres/rect-01.jpg" alt="Montre Rectangulaire Or Retro">
             </div>
-                        <div class="thumbs">
+            <div class="thumbs">
               <button class="thumb is-active" type="button" data-src="montres/rect-01.jpg" aria-label="Or">
                 <img src="montres/rect-01.jpg" alt="Montre Rectangulaire Or Retro or">
               </button>
@@ -64,7 +64,6 @@
                 <img src="montres/rect-02.jpg" alt="Montre Rectangulaire Or Retro argent">
               </button>
             </div>
-
           </div>
           <div class="thumb-info thumb-info-bottom">
             <div>Livraison 48h</div>
@@ -88,6 +87,13 @@
               <input id="size" name="size" type="text" value="Standard" readonly>
             </div>
             <div>
+              <label for="color">Couleur</label>
+              <select id="color" name="color">
+                <option value="Or">Or</option>
+                <option value="Argent">Argent</option>
+              </select>
+            </div>
+            <div>
               <label for="gift">Emballage cadeau</label>
               <select id="gift" name="gift">
                 <option value="non">Non</option>
@@ -106,20 +112,11 @@
               <input id="gift-text" name="gift-text" type="text" placeholder="Écrivez votre message">
             </div>
           </div>
-                    <div class="specs">
+          <div class="specs">
             <div><strong>Couleurs</strong>Or, Argent.</div>
             <div><strong>Style</strong>Retro.</div>
             <div><strong>Mouvement</strong>Quartz.</div>
             <div><strong>Bracelet</strong>Acier inoxydable.</div>
-          </div>
-
-            <div><strong>Diamètre cadran</strong>40 mm.</div>
-            <div><strong>Épaisseur</strong>8 mm.</div>
-            <div><strong>Boîtier</strong>Acier inoxydable.</div>
-            <div><strong>Matériau</strong>Métal.</div>
-            <div><strong>Style</strong>Casual.</div>
-            <div><strong>Public</strong>Hommes.</div>
-            <div><strong>Emballage</strong>180 × 100 × 40 mm.</div>
           </div>
           <div class="hero-actions">
             <button class="button button-primary" type="button" data-add-to-cart data-sku="watch-301" data-name="Montre Rectangulaire Or Retro" data-price="50" data-image="montres/rect-01.jpg" data-url="product-009.html" data-qty-input="qty">Ajouter au panier</button>
@@ -139,12 +136,13 @@
       <div>
         <p>Service client</p>
         <p>karcharelle@gmail.com</p>
-              </div>
-            <div>
+      </div>
+      <div>
         <p>Réseaux (développeurs)</p>
-        <p><a class="social-link" href="https://www.instagram.com/daphnel.takam?igsh=ZHplaHR6NHhzZXo0" target="_blank" rel="noopener">          <span class="ig-icon" aria-hidden="true"></span> Instagram de l'équipe dev</a></p>
+        <p><a class="social-link" href="https://www.instagram.com/daphnel.takam?igsh=ZHplaHR6NHhzZXo0" target="_blank" rel="noopener"><span class="ig-icon" aria-hidden="true"></span> Instagram de l'équipe dev</a></p>
         <p>Responsables : Magni Evige, Hatim Abdouni, Adrien Barroche</p>
-            <div class="legal-links">
+      </div>
+      <div class="legal-links">
         <a href="mentions-legales.html">Mentions légales</a>
         <span>·</span>
         <a href="cgv.html">CGV</a>
@@ -153,37 +151,7 @@
         <span>·</span>
         <a href="retours-livraison.html">Livraison & retours</a>
       </div>
-</div>
     </div>
   </footer>
-
-  <script>
-    const giftSelect = document.getElementById("gift");
-    const giftMessageWrap = document.getElementById("gift-message-wrap");
-    const giftMessageSelect = document.getElementById("gift-message");
-    const giftTextWrap = document.getElementById("gift-text-wrap");
-    const mainImage = document.getElementById("main-image");
-    const thumbs = document.querySelectorAll(".thumb");
-
-    function toggleGiftOptions() {
-      const giftYes = giftSelect.value === "oui";
-      giftMessageWrap.style.display = giftYes ? "block" : "none";
-      if (!giftYes) {
-        giftMessageSelect.value = "non";
-        giftTextWrap.style.display = "none";
-      }
-    }
-
-    function toggleGiftText() {
-      const messageYes = giftMessageSelect.value === "oui";
-      giftTextWrap.style.display = messageYes ? "block" : "none";
-    }
-
-    giftSelect.addEventListener("change", toggleGiftOptions);
-    giftMessageSelect.addEventListener("change", toggleGiftText);
-    toggleGiftOptions();
-
-    });
-  </script>
 </body>
 </html>
