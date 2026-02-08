@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Special Valentine | Maison Aurore</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="valentine-page">
+    <div class="valentine-card">
+      <div class="valentine-sparkles"></div>
+      <div class="badge">Special Saint-Valentin</div>
+      <h1>❤️ Do you want to be my Valentine? ❤️</h1>
+      <p>A luxurious little question for a luxurious person.</p>
+      <div class="valentine-actions">
+        <button class="button valentine-yes" id="valentine-yes" type="button">Yes</button>
+        <button class="button button-secondary valentine-no" id="valentine-no" type="button">No</button>
+      </div>
+      <div class="valentine-message" id="valentine-message">
+        <div class="valentine-icons">❤ ✦ ❤ ✦ ❤</div>
+        <strong>❤ You’re officially my Valentine!</strong>
+        <div style="margin-top: 8px; color: #f4d7df; font-size: 14px;">Luxury, love, and a little sparkle.</div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const noBtn = document.getElementById("valentine-no");
+    const yesBtn = document.getElementById("valentine-yes");
+    const message = document.getElementById("valentine-message");
+    const actions = document.querySelector(".valentine-actions");
+
+    function moveNoButton() {
+      const maxX = 180;
+      const maxY = 120;
+      const x = Math.floor(Math.random() * maxX) - maxX / 2;
+      const y = Math.floor(Math.random() * maxY) - maxY / 2;
+      noBtn.style.transform = `translate(${x}px, ${y}px)`;
+    }
+
+    noBtn.addEventListener("mouseenter", moveNoButton);
+    noBtn.addEventListener("mousemove", moveNoButton);
+    noBtn.addEventListener("touchstart", moveNoButton);
+
+    yesBtn.addEventListener("click", () => {
+      message.classList.add("show", "flash-green");
+      yesBtn.disabled = true;
+      noBtn.disabled = true;
+      yesBtn.textContent = "Yes!";
+      setTimeout(() => {
+        message.classList.remove("flash-green");
+      }, 1000);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>À propos | Maison Aurore</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="cart.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">Maison Aurore</div>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+      <nav class="nav" id="site-nav">
+        <a class="nav-link" href="index.html">Accueil</a>
+        <a class="nav-link" href="shop.html">Boutique</a>
+        <a class="nav-link is-active" href="about.html" aria-current="page">À propos</a>
+        <a class="nav-link" href="contact.html">Contact</a>
+        <a class="nav-link" href="cart.html">Panier <span class="cart-count" id="cart-count">0</span></a>
+      </nav>
+    </div>
+  </header>
+  <div class="nav-overlay" id="nav-overlay"></div>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="fade-in">
+          <div class="badge">Notre maison</div>
+          <h1>L'élégance au quotidien, sans excès.</h1>
+          <p>
+            Maison Aurore est née d'une envie simple : rendre l'esthétique des grandes maisons
+            horlogères accessible à toutes et tous.
+          </p>
+        </div>
+        <div class="hero-card fade-in">
+          <h3>Nos engagements</h3>
+          <ul>
+            <li>Design pensé en France</li>
+            <li>Finitions soignées</li>
+            <li>Qualité contrôlée</li>
+            <li>Prix transparents</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container grid-two">
+        <div>
+          <div class="section-title">
+            <h2>Notre histoire</h2>
+          </div>
+          <p>
+            Nous avons créé Maison Aurore pour celles et ceux qui aiment les lignes
+            élégantes mais souhaitent un prix doux. Nos collections mêlent sobriété,
+            détails précieux et matériaux durables.
+          </p>
+          <p>
+            Chaque modèle est conçu pour accompagner toutes les occasions : rendez-vous,
+            travail, soirées ou moments personnels.
+          </p>
+        </div>
+        <div>
+          <div class="section-title">
+            <h2>Notre promesse</h2>
+          </div>
+          <div class="timeline">
+            <div class="timeline-item">
+              <h4>Écouter nos clients</h4>
+              <p>Nous ajustons nos collections selon vos retours.</p>
+            </div>
+            <div class="timeline-item">
+              <h4>Créer des designs iconiques</h4>
+              <p>Des lignes intemporelles, toujours raffinées.</p>
+            </div>
+            <div class="timeline-item">
+              <h4>Rendre le luxe accessible</h4>
+              <p>Des prix clairs, dès 50€, pour une élégance partagée.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="brand">Maison Aurore</div>
+        <p>Montres de luxe abordables pour tous les jours.</p>
+      </div>
+      <div>
+        <p>Adresse</p>
+        <p>22 Rue des Lumières</p>
+        <p>75002 Paris</p>
+      </div>
+      <div>
+        <p>Contact</p>
+        <p>support@maison-aurore.fr</p>
+        <p>+33 1 84 80 00 90</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

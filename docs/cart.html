@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panier | Maison Aurore</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="cart.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">Maison Aurore</div>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+      <nav class="nav" id="site-nav">
+        <a class="nav-link" href="index.html">Accueil</a>
+        <a class="nav-link" href="shop.html">Boutique</a>
+        <a class="nav-link" href="about.html">À propos</a>
+        <a class="nav-link" href="contact.html">Contact</a>
+        <a class="nav-link" href="cart.html">Panier <span class="cart-count" id="cart-count">0</span></a>
+      </nav>
+    </div>
+  </header>
+  <div class="nav-overlay" id="nav-overlay"></div>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <h2>Votre panier</h2>
+          <span class="badge">Récapitulatif</span>
+        </div>
+        <div class="grid-two">
+          <div class="cart" id="cart-items"></div>
+          <div class="cart-summary">
+            <h3>Total</h3>
+            <p class="price" id="cart-total">0€</p>
+            <p>Livraison estimée: 48h</p>
+            <button class="button button-primary" id="checkout-button" type="button">Payer maintenant</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="brand">Maison Aurore</div>
+        <p>Montres et bijoux de luxe abordables.</p>
+      </div>
+      <div>
+        <p>Service client</p>
+        <p>support@maison-aurore.fr</p>
+        <p>+33 1 84 80 00 90</p>
+      </div>
+      <div>
+        <p>Réseaux</p>
+        <p>Instagram · Pinterest · TikTok</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
