@@ -3,12 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Panier | Maison Karcharelle</title>
+  <title>CGV | Maison Karcharelle</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
-  <script src="cart.js" defer></script>
 </head>
 <body>
   <header class="topbar">
@@ -24,7 +23,7 @@
         <a class="nav-link" href="shop.html">Boutique</a>
         <a class="nav-link" href="about.html">À propos</a>
         <a class="nav-link" href="contact.html">Contact</a>
-        <a class="nav-link" href="cart.html">Panier <span class="cart-count" id="cart-count">0</span></a>
+        <a class="nav-link" href="cart.html">Panier</a>
       </nav>
     </div>
   </header>
@@ -34,25 +33,23 @@
     <section class="section">
       <div class="container">
         <div class="section-title">
-          <h2>Votre panier</h2>
-          <span class="badge">Récapitulatif</span>
+          <h2>Conditions générales de vente</h2>
+          <span class="badge">Maison Karcharelle</span>
         </div>
-        <div class="grid-two cart-layout">
-          <div class="cart" id="cart-items"></div>
-          <div class="cart-summary">
-            <h3>Total panier</h3>
-            <p class="price" id="cart-total">0€</p>
-            <div class="select-all">
-              <input class="cart-select-input" type="checkbox" id="select-all">
-              <label for="select-all">Tout sélectionner</label>
-            </div>
-            <p>Total sélection</p>
-            <p class="price" id="selected-total">0€</p>
-            <div class="selected-preview" id="selected-preview"></div>
-            <p>Livraison estimée: 48h</p>
-            <button class="button button-primary" id="checkout-button" type="button" style="display: none;">Payer maintenant</button>
-          </div>
+
+        <div class="specs">
+          <div><strong>1. Objet</strong>Les présentes CGV régissent les ventes de produits proposés sur Maison Karcharelle.</div>
+          <div><strong>2. Produits</strong>Les descriptions et visuels sont fournis à titre indicatif. Les variations de teinte ou de finition sont possibles.</div>
+          <div><strong>3. Prix</strong>Les prix sont affichés en euros, taxes incluses, hors frais de livraison (indiqués au panier).</div>
+          <div><strong>4. Commande</strong>La commande est validée après confirmation du paiement. Un e-mail récapitulatif peut être envoyé.</div>
+          <div><strong>5. Paiement</strong>Les paiements sont sécurisés via Stripe. Aucune donnée bancaire n'est stockée par le site.</div>
+          <div><strong>6. Livraison</strong>Délais indicatifs : 48h à 7 jours selon la destination. Livraison internationale possible.</div>
+          <div><strong>7. Droit de rétractation</strong>Vous disposez d'un délai légal de 14 jours pour retourner un produit non porté.</div>
+          <div><strong>8. Retours & remboursements</strong>Voir la page Livraison & retours pour la procédure complète.</div>
+          <div><strong>9. Garanties</strong>Garantie légale de conformité et garantie contre les vices cachés.</div>
+          <div><strong>10. Service client</strong>Contact : karcharelle@gmail.com</div>
         </div>
+
       </div>
     </section>
   </main>
@@ -64,14 +61,15 @@
         <p>Montres et bijoux de luxe abordables.</p>
       </div>
       <div>
-        <p>Service client</p>
+        <p>Contact</p>
         <p>karcharelle@gmail.com</p>
-              </div>
-            <div>
+      </div>
+      <div>
         <p>Réseaux (développeurs)</p>
-        <p><a class="social-link" href="https://www.instagram.com/daphnel.takam?igsh=ZHplaHR6NHhzZXo0" target="_blank" rel="noopener">          <span class="ig-icon" aria-hidden="true"></span> Instagram de l'équipe dev</a></p>
+        <p><a class="social-link" href="https://www.instagram.com/daphnel.takam?igsh=ZHplaHR6NHhzZXo0" target="_blank" rel="noopener"><span class="ig-icon" aria-hidden="true"></span> Instagram de l'équipe dev</a></p>
         <p>Responsables : Magni Evige, Hatim Abdouni, Adrien Barroche</p>
-            <div class="legal-links">
+      </div>
+      <div class="legal-links">
         <a href="mentions-legales.html">Mentions légales</a>
         <span>·</span>
         <a href="cgv.html">CGV</a>
@@ -80,7 +78,6 @@
         <span>·</span>
         <a href="retours-livraison.html">Livraison & retours</a>
       </div>
-</div>
     </div>
   </footer>
 </body>

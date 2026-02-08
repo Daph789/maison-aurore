@@ -1,5 +1,6 @@
 const CART_KEY = "maisonAuroreCart";
 const LAST_ADDED_KEY = "maisonAuroreLastAdded";
+const SELECTED_KEY = "maisonAuroreSelected";
 const CHECKOUT_API_URL = "https://maison-aurore.onrender.com/create-checkout-session";
 const PRODUCT_URLS = {
   "watch-007": "product-001.html",
@@ -27,6 +28,22 @@ function writeCart(items) {
 
 function formatPrice(value) {
   return `${value.toFixed(2).replace(".", ",")}€`;
+}
+
+function readSelected() {
+  try {
+    return new Set(JSON.parse(sessionStorage.getItem(SELECTED_KEY)) || []);
+  } catch {
+    return new Set();
+  }
+}
+
+function writeSelected(set) {
+  sessionStorage.setItem(SELECTED_KEY, JSON.stringify(Array.from(set)));
+}
+
+function itemKey(item) {
+  return `${item.sku}||${item.options || ""}`;
 }
 
 function updateCartCount() {
@@ -75,6 +92,9 @@ function addToCart(item) {
     LAST_ADDED_KEY,
     JSON.stringify({ sku: item.sku, options: item.options })
   );
+  const selected = readSelected();
+  selected.add(itemKey(item));
+  writeSelected(selected);
 }
 
 function isInCart(sku) {
@@ -109,6 +129,7 @@ function bindAddToCartButtons() {
   if (!buttons.length) return;
 
   buttons.forEach((button) => {
+    button.dataset.bound = "true";
     button.addEventListener("click", () => {
       const sku = button.getAttribute("data-sku");
       const name = button.getAttribute("data-name");
@@ -135,12 +156,44 @@ function bindAddToCartButtons() {
   });
 }
 
+// Fallback: event delegation in case a button missed binding
+document.addEventListener("click", (event) => {
+  const button = event.target.closest("[data-add-to-cart]");
+  if (!button || button.dataset.bound === "true") return;
+  const sku = button.getAttribute("data-sku");
+  const name = button.getAttribute("data-name");
+  const price = Number(button.getAttribute("data-price"));
+  const image = button.getAttribute("data-image") || "";
+  const url = button.getAttribute("data-url") || "";
+  const qtyInputId = button.getAttribute("data-qty-input");
+  const qtyInput = qtyInputId ? document.getElementById(qtyInputId) : null;
+  const qty = qtyInput ? Math.max(1, Number(qtyInput.value || 1)) : 1;
+  const options = buildOptionsFromPage();
+
+  if (button.hasAttribute("data-go-cart")) {
+    sessionStorage.setItem(
+      LAST_ADDED_KEY,
+      JSON.stringify({ sku, options })
+    );
+    window.location.href = "cart.html";
+    return;
+  }
+
+  addToCart({ sku, name, price, image, qty, options, url });
+  updateAddButtons();
+});
+
 function renderCartPage() {
   const list = document.getElementById("cart-items");
   const totalEl = document.getElementById("cart-total");
+  const selectedTotalEl = document.getElementById("selected-total");
+  const checkoutButton = document.getElementById("checkout-button");
+  const selectAllEl = document.getElementById("select-all");
+  const selectedPreview = document.getElementById("selected-preview");
   if (!list || !totalEl) return;
 
   const items = readCart();
+  const selected = readSelected();
   let updatedPrices = false;
   items.forEach((item) => {
     if (item.sku === "watch-007" && item.price !== 64.99) {
@@ -156,12 +209,21 @@ function renderCartPage() {
   if (!items.length) {
     list.innerHTML = "<p>Votre panier est vide.</p>";
     totalEl.textContent = formatPrice(0);
+    if (selectedTotalEl) selectedTotalEl.textContent = formatPrice(0);
+    if (checkoutButton) checkoutButton.style.display = "none";
+    if (selectAllEl) selectAllEl.checked = false;
+    if (selectedPreview) selectedPreview.innerHTML = "";
     return;
   }
 
   let total = 0;
+  let selectedTotal = 0;
   items.forEach((item, index) => {
     total += item.price * item.qty;
+    const key = itemKey(item);
+    if (selected.has(key)) {
+      selectedTotal += item.price * item.qty;
+    }
     const url = item.url || PRODUCT_URLS[item.sku] || "shop.html";
     const linkStart = `<a href="${url}">`;
     const linkEnd = "</a>";
@@ -172,6 +234,7 @@ function renderCartPage() {
       el.setAttribute("data-options", item.options);
     }
     el.innerHTML = `
+      <input class="cart-select-input" type="checkbox" data-index="${index}" ${selected.has(key) ? "checked" : ""}>
       ${linkStart}<img src="${item.image}" alt="${item.name}">${linkEnd}
       <div>
         <h4>${linkStart}${item.name}${linkEnd}</h4>
@@ -190,6 +253,27 @@ function renderCartPage() {
   });
 
   totalEl.textContent = formatPrice(total);
+  if (selectedTotalEl) selectedTotalEl.textContent = formatPrice(selectedTotal);
+  if (checkoutButton) {
+    checkoutButton.style.display = selectedTotal > 0 ? "inline-flex" : "none";
+  }
+  if (selectAllEl) {
+    selectAllEl.checked = items.length > 0 && selectedTotal > 0 && items.every((item) => selected.has(itemKey(item)));
+  }
+  if (selectedPreview) {
+    selectedPreview.innerHTML = "";
+    items.forEach((item) => {
+      const key = itemKey(item);
+      if (!selected.has(key)) return;
+      const wrapper = document.createElement("div");
+      wrapper.className = "selected-thumb";
+      wrapper.innerHTML = `
+        <img src="${item.image}" alt="${item.name}">
+        <button type="button" class="selected-remove" aria-label="Retirer de la sélection" data-key="${key}">×</button>
+      `;
+      selectedPreview.appendChild(wrapper);
+    });
+  }
 
   const lastAddedRaw = sessionStorage.getItem(LAST_ADDED_KEY);
   if (lastAddedRaw) {
@@ -237,6 +321,72 @@ function renderCartPage() {
       updateCartCount();
     });
   });
+
+  list.querySelectorAll(".cart-select-input").forEach((input) => {
+    input.addEventListener("change", () => {
+      const idx = Number(input.getAttribute("data-index"));
+      const current = readCart();
+      const item = current[idx];
+      if (!item) return;
+      const key = itemKey(item);
+      const next = readSelected();
+      if (input.checked) {
+        next.add(key);
+      } else {
+        next.delete(key);
+      }
+      writeSelected(next);
+      renderCartPage();
+    });
+  });
+
+  if (selectedPreview) {
+    selectedPreview.querySelectorAll(".selected-remove").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const key = btn.getAttribute("data-key");
+        const next = readSelected();
+        next.delete(key);
+        writeSelected(next);
+        renderCartPage();
+      });
+    });
+
+    selectedPreview.querySelectorAll(".selected-thumb img").forEach((img) => {
+      img.addEventListener("click", () => {
+        const parent = img.closest(".selected-thumb");
+        const removeBtn = parent ? parent.querySelector(".selected-remove") : null;
+        const key = removeBtn ? removeBtn.getAttribute("data-key") : null;
+        if (!key) return;
+        const [sku, options] = key.split("||");
+        const selectorParts = [`.cart-item[data-sku="${sku}"]`];
+        if (options) {
+          selectorParts.push(`[data-options="${CSS.escape(options)}"]`);
+        }
+        const selector = selectorParts.join("");
+        const target = list.querySelector(selector) || list.querySelector(`[data-sku="${sku}"]`);
+        if (!target) return;
+        target.scrollIntoView({ behavior: "smooth", block: "center" });
+        target.classList.add("is-highlight");
+        setTimeout(() => {
+          target.classList.remove("is-highlight");
+        }, 2000);
+      });
+    });
+  }
+
+  if (selectAllEl) {
+    if (!selectAllEl.dataset.bound) {
+      selectAllEl.dataset.bound = "true";
+      selectAllEl.addEventListener("change", () => {
+        const next = new Set();
+        if (selectAllEl.checked) {
+          items.forEach((item) => next.add(itemKey(item)));
+        }
+        writeSelected(next);
+        renderCartPage();
+      });
+    }
+  }
 }
 
 updateCartCount();
@@ -340,14 +490,16 @@ const checkoutButton = document.getElementById("checkout-button");
 if (checkoutButton) {
   checkoutButton.addEventListener("click", async () => {
     const items = readCart();
-    if (!items.length) return;
+    const selected = readSelected();
+    const selectedItems = items.filter((item) => selected.has(itemKey(item)));
+    if (!selectedItems.length) return;
     checkoutButton.disabled = true;
     checkoutButton.textContent = "Redirection...";
     try {
       const response = await fetch(CHECKOUT_API_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ items }),
+        body: JSON.stringify({ items: selectedItems }),
       });
       const data = await response.json();
       if (data.url) {

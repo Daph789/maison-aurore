@@ -11,6 +11,10 @@ const ALLOWED_ORIGIN = process.env.ALLOWED_ORIGIN || "*";
 const SUCCESS_URL = process.env.SUCCESS_URL || "https://pixmell.net/success.html";
 const CANCEL_URL = process.env.CANCEL_URL || "https://pixmell.net/cancel.html";
 const SHIPPING_EUR = 5.99;
+const ALLOWED_COUNTRIES = (process.env.ALLOWED_COUNTRIES || "")
+  .split(",")
+  .map((c) => c.trim().toUpperCase())
+  .filter(Boolean);
 
 app.use(cors({ origin: ALLOWED_ORIGIN }));
 app.use(express.json({ limit: "1mb" }));
@@ -54,12 +58,19 @@ app.post("/create-checkout-session", async (req, res) => {
       quantity: 1,
     });
 
-    const session = await stripe.checkout.sessions.create({
+    const sessionParams = {
       mode: "payment",
       line_items: lineItems,
       success_url: SUCCESS_URL,
       cancel_url: CANCEL_URL,
-    });
+      phone_number_collection: { enabled: true },
+    };
+
+    if (ALLOWED_COUNTRIES.length) {
+      sessionParams.shipping_address_collection = { allowed_countries: ALLOWED_COUNTRIES };
+    }
+
+    const session = await stripe.checkout.sessions.create(sessionParams);
 
     res.json({ url: session.url });
   } catch (err) {
