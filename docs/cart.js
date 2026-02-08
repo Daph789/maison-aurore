@@ -362,3 +362,31 @@ if (checkoutButton) {
     }
   });
 }
+
+// Gift options toggle (fallback for pages missing inline script)
+const giftSelect = document.getElementById("gift");
+const giftMessageWrap = document.getElementById("gift-message-wrap");
+const giftMessageSelect = document.getElementById("gift-message");
+const giftTextWrap = document.getElementById("gift-text-wrap");
+
+function toggleGiftOptionsFallback() {
+  if (!giftSelect || !giftMessageWrap || !giftMessageSelect || !giftTextWrap) return;
+  const giftYes = giftSelect.value === "oui";
+  giftMessageWrap.style.display = giftYes ? "block" : "none";
+  if (!giftYes) {
+    giftMessageSelect.value = "non";
+    giftTextWrap.style.display = "none";
+  }
+}
+
+function toggleGiftTextFallback() {
+  if (!giftMessageSelect || !giftTextWrap) return;
+  const messageYes = giftMessageSelect.value === "oui";
+  giftTextWrap.style.display = messageYes ? "block" : "none";
+}
+
+if (giftSelect && giftMessageSelect) {
+  giftSelect.addEventListener("change", toggleGiftOptionsFallback);
+  giftMessageSelect.addEventListener("change", toggleGiftTextFallback);
+  toggleGiftOptionsFallback();
+}
