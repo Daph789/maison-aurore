@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boutique | Maison Aurore</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="cart.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">Maison Aurore</div>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+      <nav class="nav" id="site-nav">
+        <a class="nav-link" href="index.html">Accueil</a>
+        <a class="nav-link is-active" href="shop.html" aria-current="page">Boutique</a>
+        <a class="nav-link" href="about.html">À propos</a>
+        <a class="nav-link" href="contact.html">Contact</a>
+        <a class="nav-link" href="cart.html">Panier <span class="cart-count" id="cart-count">0</span></a>
+      </nav>
+    </div>
+  </header>
+  <div class="nav-overlay" id="nav-overlay"></div>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="fade-in">
+          <div class="badge">Collection 2026</div>
+          <h1>La boutique Maison Aurore</h1>
+          <p>
+            Des montres raffinées, pensées pour sublimer votre quotidien.
+            Choisissez votre signature parmi nos modèles abordables.
+          </p>
+        </div>
+        <div class="hero-card fade-in">
+          <h3>Offre spéciale</h3>
+          <ul>
+            <li>Livraison offerte dès 80€</li>
+            <li>Bracelet cadeau pour 2 achats</li>
+            <li>Emballage luxe inclus</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <h2>Notre sélection</h2>
+          <span class="badge">Prix 50€ à 150€</span>
+        </div>
+        <div class="category-grid" style="margin-bottom: 28px;">
+          <div class="category-card">
+            <h4>Montres</h4>
+            <p>Classiques, acier ou cuir, élégantes et intemporelles.</p>
+          </div>
+          <div class="category-card">
+            <h4>Bijoux</h4>
+            <p>Colliers, bracelets et pièces lumineuses à prix doux.</p>
+          </div>
+          <div class="category-card">
+            <h4>Éditions cadeaux</h4>
+            <p>Emballage luxe et message personnalisé.</p>
+          </div>
+        </div>
+        <div class="product-grid">
+          <article class="card">
+            <span class="tag">Bijoux 01</span>
+            <span class="tag">Luxe Femme</span>
+            <h3>Collier Lariat Cœur</h3>
+            <p>Style love/heart, chaîne régulière, inox.</p>
+            <img class="card-media" src="bijoux/bijou-03.jpg" alt="Collier Lariat Cœur">
+            <div class="card-actions">
+              <span class="price">10€</span>
+              <a class="button button-secondary" href="product-006.html">Voir</a>
+            </div>
+          </article>
+          <article class="card">
+            <span class="tag">Bijoux 02</span>
+            <span class="tag">Luxe Femme</span>
+            <h3>Bracelet Star Shell</h3>
+            <p>Bracelet fin, style délicat, métal.</p>
+            <img class="card-media" src="bijoux/bijou-04.jpg" alt="Bracelet Star Shell">
+            <div class="card-actions">
+              <span class="price">10€</span>
+              <a class="button button-secondary" href="product-007.html">Voir</a>
+            </div>
+          </article>
+          <article class="card">
+            <span class="tag">Bijoux 03</span>
+            <span class="tag">Luxe Mixte</span>
+            <h3>Collier Lettre Initiale</h3>
+            <p>Chaîne box, lettre A‑Z, ton or/acier.</p>
+            <img class="card-media" src="bijoux/bijou-05.jpg" alt="Collier Lettre Initiale">
+            <div class="card-actions">
+              <span class="price">10€</span>
+              <a class="button button-secondary" href="product-008.html">Voir</a>
+            </div>
+          </article>
+          <article class="card">
+            <span class="tag">Signature 01</span>
+            <h3>Éclat Noir</h3>
+            <p>Boîtier 36mm, cadran noir, dorures fines.</p>
+            <div class="card-actions">
+              <span class="price">50€</span>
+              <a class="button button-secondary" href="product-002.html">Voir</a>
+            </div>
+          </article>
+          <article class="card">
+            <span class="tag">Montre Femme</span>
+            <h3>Rectangulaire Or Rétro</h3>
+            <p>Quartz, style rétro, bracelet acier.</p>
+            <img class="card-media" src="montres/rect-01.jpg" alt="Montre rectangulaire or rétro">
+            <div class="card-actions">
+              <span class="price">50€</span>
+              <a class="button button-secondary" href="product-009.html">Voir</a>
+            </div>
+          </article>
+          <article class="card">
+            <span class="tag">Signature 02</span>
+            <h3>Orme Rosé</h3>
+            <p>Finition or rose, bracelet cuir mocha.</p>
+            <div class="card-actions">
+              <span class="price">80€</span>
+              <a class="button button-secondary" href="product-003.html">Voir</a>
+            </div>
+          </article>
+          <article class="card">
+            <span class="tag">Signature 03</span>
+            <h3>Bleu Horizon</h3>
+            <p>Cadran bleu nuit, acier poli miroir.</p>
+            <div class="card-actions">
+              <span class="price">120€</span>
+              <a class="button button-secondary" href="product-001.html">Voir</a>
+            </div>
+          </article>
+          <article class="card">
+            <span class="tag">Montres 07</span>
+            <h3>Montre Émeraude</h3>
+            <p>Cadran vert profond, bracelet acier lumineux.</p>
+            <div class="card-actions">
+              <span class="price">64,99€</span>
+              <a class="button button-secondary" href="product-001.html">Voir</a>
+            </div>
+          </article>
+          <article class="card">
+            <span class="tag">Signature 04</span>
+            <h3>Argent Brume</h3>
+            <p>Boîtier argent glacé, bracelet maille fine.</p>
+            <div class="card-actions">
+              <span class="price">95€</span>
+              <a class="button button-secondary" href="product-001.html">Voir</a>
+            </div>
+          </article>
+          <article class="card">
+            <span class="tag">Signature 05</span>
+            <h3>Ambre Solaire</h3>
+            <p>Verre bombé, teinte ambrée, cuir caramel.</p>
+            <div class="card-actions">
+              <span class="price">110€</span>
+              <a class="button button-secondary" href="product-001.html">Voir</a>
+            </div>
+          </article>
+          <article class="card">
+            <span class="tag">Signature 06</span>
+            <h3>Marbre Gris</h3>
+            <p>Dial marbré, lunette fine, acier brossé.</p>
+            <div class="card-actions">
+              <span class="price">140€</span>
+              <a class="button button-secondary" href="product-001.html">Voir</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="brand">Maison Aurore</div>
+        <p>Montres de luxe abordables pour tous les jours.</p>
+      </div>
+      <div>
+        <p>Livraison & retours</p>
+        <p>Retours sous 14 jours</p>
+        <p>Garantie 2 ans</p>
+      </div>
+      <div>
+        <p>Contact</p>
+        <p>support@maison-aurore.fr</p>
+        <p>+33 1 84 80 00 90</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
