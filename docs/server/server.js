@@ -54,6 +54,7 @@ app.get("/health", (_req, res) => {
 app.post("/create-checkout-session", async (req, res) => {
   try {
     const items = Array.isArray(req.body.items) ? req.body.items : [];
+    const profile = req.body && typeof req.body.profile === "object" ? req.body.profile : {};
     if (!items.length) {
       return res.status(400).json({ error: "Cart is empty" });
     }
@@ -104,6 +105,45 @@ app.post("/create-checkout-session", async (req, res) => {
 
     const countries = ALLOWED_COUNTRIES.length ? ALLOWED_COUNTRIES : DEFAULT_ALLOWED_COUNTRIES;
     sessionParams.shipping_address_collection = { allowed_countries: countries };
+
+    const email = String(profile.email || "").trim();
+    const name = String(profile.full_name || "").trim();
+    const phone = String(profile.phone || "").trim();
+    const line1 = String(profile.line1 || "").trim();
+    const line2 = String(profile.line2 || "").trim();
+    const city = String(profile.city || "").trim();
+    const postalCode = String(profile.postal_code || "").trim();
+    const country = String(profile.country || "").trim().toUpperCase();
+    const hasAddress = line1 && city && postalCode && country.length === 2;
+
+    if (email) {
+      sessionParams.customer_email = email;
+    }
+
+    if (email || name || phone || hasAddress) {
+      const customerPayload = {};
+      if (email) customerPayload.email = email;
+      if (name) customerPayload.name = name;
+      if (phone) customerPayload.phone = phone;
+      if (hasAddress) {
+        customerPayload.address = {
+          line1,
+          city,
+          postal_code: postalCode,
+          country,
+        };
+        if (line2) customerPayload.address.line2 = line2;
+        customerPayload.shipping = {
+          name: name || "Client",
+          address: customerPayload.address,
+          phone: phone || undefined,
+        };
+      }
+
+      const customer = await stripe.customers.create(customerPayload);
+      sessionParams.customer = customer.id;
+      delete sessionParams.customer_email;
+    }
 
     const session = await stripe.checkout.sessions.create(sessionParams);
 

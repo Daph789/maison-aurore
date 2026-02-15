@@ -1,6 +1,7 @@
 const CART_KEY = "maisonAuroreCart";
 const LAST_ADDED_KEY = "maisonAuroreLastAdded";
 const SELECTED_KEY = "maisonAuroreSelected";
+const PROFILE_KEY = "maisonAuroreProfile";
 const CHECKOUT_API_URL = "https://maison-aurore.onrender.com/create-checkout-session";
 const PRODUCT_URLS = {
   "watch-007": "product-001.html",
@@ -24,6 +25,23 @@ function readCart() {
 
 function writeCart(items) {
   localStorage.setItem(CART_KEY, JSON.stringify(items));
+}
+
+function readProfile() {
+  try {
+    return JSON.parse(localStorage.getItem(PROFILE_KEY)) || {};
+  } catch {
+    return {};
+  }
+}
+
+function writeProfile(profile) {
+  localStorage.setItem(PROFILE_KEY, JSON.stringify(profile));
+}
+
+function isProfileComplete(profile) {
+  const required = ["full_name", "email", "line1", "city", "postal_code", "country"];
+  return required.every((key) => String(profile[key] || "").trim().length > 0);
 }
 
 function formatPrice(value) {
@@ -51,6 +69,60 @@ function updateCartCount() {
   if (!countEl) return;
   const total = readCart().reduce((sum, item) => sum + item.qty, 0);
   countEl.textContent = total;
+}
+
+function ensureAccountNavLink() {
+  const nav = document.getElementById("site-nav");
+  if (!nav) return;
+  if (nav.querySelector('a[href="account.html"]')) return;
+  const accountLink = document.createElement("a");
+  accountLink.className = "nav-link";
+  accountLink.href = "account.html";
+  accountLink.textContent = "Compte";
+  const cartLink = nav.querySelector('a[href="cart.html"]');
+  if (cartLink) {
+    nav.insertBefore(accountLink, cartLink);
+  } else {
+    nav.appendChild(accountLink);
+  }
+}
+
+function bindAccountForm() {
+  const form = document.getElementById("account-form");
+  if (!form) return;
+  const fields = [
+    "full_name",
+    "email",
+    "phone",
+    "line1",
+    "line2",
+    "city",
+    "postal_code",
+    "country",
+  ];
+  const profile = readProfile();
+  fields.forEach((id) => {
+    const input = document.getElementById(id);
+    if (!input) return;
+    input.value = profile[id] || "";
+  });
+
+  const status = document.getElementById("account-status");
+  const returnTo = new URLSearchParams(window.location.search).get("return");
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const nextProfile = {};
+    fields.forEach((id) => {
+      const input = document.getElementById(id);
+      if (!input) return;
+      nextProfile[id] = String(input.value || "").trim();
+    });
+    writeProfile(nextProfile);
+    if (status) status.textContent = "Informations enregistrées.";
+    if (returnTo) {
+      window.location.href = returnTo;
+    }
+  });
 }
 
 function buildOptionsFromPage() {
@@ -390,9 +462,11 @@ function renderCartPage() {
 }
 
 updateCartCount();
+ensureAccountNavLink();
 updateAddButtons();
 bindAddToCartButtons();
 renderCartPage();
+bindAccountForm();
 
 const navToggle = document.querySelector(".nav-toggle");
 const navMenu = document.getElementById("site-nav");
@@ -493,13 +567,18 @@ if (checkoutButton) {
     const selected = readSelected();
     const selectedItems = items.filter((item) => selected.has(itemKey(item)));
     if (!selectedItems.length) return;
+    const profile = readProfile();
+    if (!isProfileComplete(profile)) {
+      window.location.href = "account.html?return=cart.html";
+      return;
+    }
     checkoutButton.disabled = true;
     checkoutButton.textContent = "Redirection...";
     try {
       const response = await fetch(CHECKOUT_API_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ items: selectedItems }),
+        body: JSON.stringify({ items: selectedItems, profile }),
       });
       const data = await response.json();
       if (data.url) {

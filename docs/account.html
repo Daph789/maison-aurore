@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compte | Maison Karcharelle</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="cart.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">Maison Karcharelle</div>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+      <nav class="nav" id="site-nav">
+        <a class="nav-link" href="index.html">Accueil</a>
+        <a class="nav-link" href="shop.html">Boutique</a>
+        <a class="nav-link" href="about.html">À propos</a>
+        <a class="nav-link" href="contact.html">Contact</a>
+        <a class="nav-link is-active" href="account.html" aria-current="page">Compte</a>
+        <a class="nav-link" href="cart.html">Panier <span class="cart-count" id="cart-count">0</span></a>
+      </nav>
+    </div>
+  </header>
+  <div class="nav-overlay" id="nav-overlay"></div>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <h1>Compte client</h1>
+          <span class="badge">Adresse de livraison modifiable</span>
+        </div>
+
+        <form id="account-form" class="form" autocomplete="on">
+          <div>
+            <label for="full_name">Nom complet</label>
+            <input id="full_name" name="full_name" type="text" required>
+          </div>
+
+          <div class="grid-two">
+            <div>
+              <label for="email">E-mail</label>
+              <input id="email" name="email" type="email" required>
+            </div>
+            <div>
+              <label for="phone">Téléphone</label>
+              <input id="phone" name="phone" type="tel">
+            </div>
+          </div>
+
+          <div>
+            <label for="line1">Adresse (ligne 1)</label>
+            <input id="line1" name="line1" type="text" required>
+          </div>
+
+          <div>
+            <label for="line2">Adresse (ligne 2)</label>
+            <input id="line2" name="line2" type="text">
+          </div>
+
+          <div class="grid-two">
+            <div>
+              <label for="city">Ville</label>
+              <input id="city" name="city" type="text" required>
+            </div>
+            <div>
+              <label for="postal_code">Code postal</label>
+              <input id="postal_code" name="postal_code" type="text" required>
+            </div>
+          </div>
+
+          <div>
+            <label for="country">Pays (code ISO 2 lettres, ex: FR)</label>
+            <input id="country" name="country" type="text" maxlength="2" placeholder="FR" required>
+          </div>
+
+          <div class="hero-actions">
+            <button class="button button-primary" type="submit">Enregistrer</button>
+            <a class="button button-secondary" href="cart.html">Retour panier</a>
+          </div>
+
+          <p id="account-status" style="color:#e3c98f;"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="brand">Maison Karcharelle</div>
+        <p>Montres et bijoux de luxe abordables.</p>
+      </div>
+      <div>
+        <p>Service client</p>
+        <p>karcharelle@gmail.com</p>
+      </div>
+      <div>
+        <p>Réseaux (développeurs)</p>
+        <p><a class="social-link" href="https://www.instagram.com/daphnel.takam?igsh=ZHplaHR6NHhzZXo0" target="_blank" rel="noopener"><span class="ig-icon" aria-hidden="true"></span> Instagram de l'équipe dev</a></p>
+        <p>Responsables : Magni Evige, Hatim Abdouni, Adrien Barroche</p>
+      </div>
+      <div class="legal-links">
+        <a href="mentions-legales.html">Mentions légales</a>
+        <span>·</span>
+        <a href="cgv.html">CGV</a>
+        <span>·</span>
+        <a href="confidentialite.html">Politique de confidentialité</a>
+        <span>·</span>
+        <a href="retours-livraison.html">Livraison & retours</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
