@@ -384,10 +384,12 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
   gap: 20px;
   margin-bottom: 32px;
 }
 
+.section-title h1,
 .section-title h2 {
   font-family: "Cinzel", "Times New Roman", serif;
   font-size: clamp(1.6rem, 2.5vw, 2.3rem);
@@ -404,6 +406,10 @@ a {
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 0.16em;
+  line-height: 1.4;
+  white-space: normal;
+  text-align: center;
+  max-width: 100%;
 }
 
 .product-grid {
@@ -555,6 +561,8 @@ a {
 }
 
 .form label {
+  display: block;
+  margin-bottom: 8px;
   font-size: 13px;
   text-transform: uppercase;
   letter-spacing: 0.18em;
@@ -564,12 +572,26 @@ a {
 .form input,
 .form textarea,
 .form select {
+  width: 100%;
   padding: 12px 14px;
   border-radius: 12px;
   border: 1px solid rgba(199, 168, 106, 0.2);
   background: #0f0e0c;
   color: var(--cream);
   font-family: inherit;
+}
+
+.account-form {
+  max-width: 760px;
+  padding: 28px;
+  border-radius: 18px;
+  border: 1px solid rgba(199, 168, 106, 0.25);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.account-status {
+  min-height: 24px;
+  color: var(--gold-soft);
 }
 
 .form textarea {
@@ -1122,6 +1144,10 @@ a {
 
   .cta-box {
     padding: 26px;
+  }
+
+  .account-form {
+    padding: 18px;
   }
 
   .thumbs.hide-mobile {
