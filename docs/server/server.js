@@ -77,15 +77,6 @@ app.post("/create-checkout-session", async (req, res) => {
       };
     });
 
-    lineItems.push({
-      price_data: {
-        currency: "eur",
-        product_data: { name: "Livraison" },
-        unit_amount: Math.round(SHIPPING_EUR * 100),
-      },
-      quantity: 1,
-    });
-
     const sessionParams = {
       mode: "payment",
       line_items: lineItems,
@@ -93,6 +84,22 @@ app.post("/create-checkout-session", async (req, res) => {
       cancel_url: CANCEL_URL,
       phone_number_collection: { enabled: true },
       billing_address_collection: "required",
+      shipping_options: [
+        {
+          shipping_rate_data: {
+            type: "fixed_amount",
+            fixed_amount: {
+              amount: Math.round(SHIPPING_EUR * 100),
+              currency: "eur",
+            },
+            display_name: "Livraison standard",
+            delivery_estimate: {
+              minimum: { unit: "business_day", value: 2 },
+              maximum: { unit: "business_day", value: 5 },
+            },
+          },
+        },
+      ],
     };
 
     const countries = ALLOWED_COUNTRIES.length ? ALLOWED_COUNTRIES : DEFAULT_ALLOWED_COUNTRIES;
